@@ -1,15 +1,21 @@
 ﻿# Enterprise Fabric & Power BI Semantic Analytics Platform
 
-Production-grade semantic modeling and operational intelligence platform built on **Microsoft Fabric (PBIP / TMDL)** standards.
+[![Microsoft Fabric](https://img.shields.io/badge/Platform-Microsoft%20Fabric-0078D4?style=for-the-badge&logo=microsoft)](https://www.microsoft.com/en-us/microsoft-fabric)
+[![Power BI](https://img.shields.io/badge/BI-Power%20BI%20Desktop%20%2F%20Service-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
+[![Semantic Format](https://img.shields.io/badge/Format-PBIP%20%7C%20TMDL-2374AB?style=for-the-badge)](https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-overview)
+[![Engine](https://img.shields.io/badge/Engine-VertiPaq%20%2F%20Direct%20Lake-107C41?style=for-the-badge)](https://learn.microsoft.com/en-us/analysis-services/tabular-models/tabular-models-ssas)
+[![RLS Enforced](https://img.shields.io/badge/Security-Row--Level%20Security%20(USERPRINCIPALNAME)-critical?style=for-the-badge)](https://learn.microsoft.com/en-us/power-bi/enterprise/service-admin-rls)
+[![Reconciliation](https://img.shields.io/badge/UAT%20Audit-%2431.28M%20Reconciled%20(0%20Variance)-success?style=for-the-badge)](#financial-reconciliation--audit-sign-off)
 
-## Architecture & Semantic Spec
-* **Data Modeling:** Star Schema (1 Fact : 4 Dimensions) with single-direction 1:N relationship propagation.
-* **Storage Engine:** VertiPaq / Direct Lake semantic layer.
-* **Time Intelligence DAX:** `TOTALYTD`, `SAMEPERIODLASTYEAR` (SPLY), and dynamic metric parameter toggles via `SWITCH(TRUE())`.
-* **Supply Chain Fulfillment:** Role-playing calendar dimensions handled via inactive date relationships dynamically activated via `USERELATIONSHIP()`.
-* **Governance & Security:** Granular Row-Level Security (RLS) isolating regional tenancy via `[RegionManagerEmail] = USERPRINCIPALNAME()`.
-* **Financial Integrity:** Automated Python/DAX reconciliation pipeline certifying $31.28M in revenue with 100% zero variance against ERP general ledgers.
+---
 
-## Modules
-1. `enterprise-sales-semantic-analytics`: Sales revenue, customer dimension, regional performance, and RLS security.
-2. `supply-chain-operational-analytics`: Order-to-delivery fulfillment, logistics latency, and 56.30% OTIF benchmarks across 6,000 shipments.
+## Executive Summary
+This repository houses an enterprise-grade Business Intelligence and Operational Intelligence solution architected natively for **Microsoft Fabric (PBIP / TMDL Developer Mode)**. Departing from legacy monolithic `.pbix` workflows, the platform enforces modern code-first engineering practices: source-controllable Tabular Model Definition Language (`.tmdl`), git-integrated semantic layers, deterministic DAX measure libraries, granular Row-Level Security (RLS), and automated source-to-report reconciliation pipelines.
+
+The platform orchestrates **5,000+ sales transactions** and **6,000+ logistics shipment events**, balancing financial revenue reporting ($31.28M certified ledger) against operational fulfillment efficiency (56.30% OTIF benchmarks).
+
+---
+
+## Architecture & Semantic Topology
+
+The analytical engine runs on an optimized **Star Schema (Kimball Methodology)** designed for sub-second VertiPaq compression and cache efficiency:
